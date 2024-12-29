@@ -31,9 +31,3 @@ function Params = CalcAndCheckParams(inParams, ParamsNum)
             Params.FileManager.ResultDirName = convertStringsToChars( ...
                 Params.FileManager.ResultDirName);
         end
-
-    % Вычисление ЧД после передискртизации
-        Params.Signal.NewSampFreq = Params.Resampler.NewSps * ...
-            Params.Signal.SymbRate;
-end
-
