@@ -45,8 +45,7 @@ methods
             end
     end
     
-    function OutData = Step(obj, InData, MainSignal, FreqOffset, ...
-            ChannelEst, RRCFilter)
+    function OutData = Step(obj, InData, FreqOffset, ChannelEst, RRCFilter)
     % Восстановление основного сигнала
 
         % Позиции в массиве, соответствующие расположению модуляционных
