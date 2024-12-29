@@ -64,36 +64,6 @@ methods
                 exp(1j * 2 * pi * cumsum(FreqOffset));
         % Добавление оценки амплитудных искажений канала
             OutData = SymbsOffset .* ChannelEst;
-        % Формирующий фильтр
-%             OutData = RRCFilter.Step(SymbsChannel);
-
-%         % Регулировка амплитуды восстановленного сигнала
-%             % Мощность основного сигнала
-%                 RefPower = PowerCalc(MainSignal, obj.RawSampFreq, ...
-%                     obj.BandLims);
-%             % Мощность сформированного сигнала
-%                 Power = mean(abs(SigUnadjusted).^2);
-%             % Отношение мощностей 
-%                 PowerRatio = RefPower / Power;
-%             % Регулировка амплитуды сигнала
-%                 OutData = SigUnadjusted * sqrt(PowerRatio);
     end
 end
-end
-
-% --- Подфункции ---------------------------------------------------------%
-function Power = PowerCalc(Signal, SampFreq, BandLims)
-% Вычисление средней мощности сигнала в целом/в определённой полосе
-
-    % Проверка входных аргументов
-        if nargin == 1
-            % Вычисление мощности
-            Power = mean(abs(Signal).^2);
-
-        elseif nargin == 3
-            % Вычисление мощности в полосе
-            [spds, freqs] = GetSPDEstFun(Signal, SampFreq);
-
-            Power = sum(spds(freqs >= BandLims(1) & freqs < BandLims(2)));
-        end
 end
